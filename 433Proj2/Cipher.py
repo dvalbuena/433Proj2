@@ -71,7 +71,7 @@ if __name__ == '__main__':
             print('<ENC/DEC>:')
             print('ENC: Encrypt')
             print('DEC: Decrypt')
-    except FileNotFoundError as e:
-        print(e.filename + ' was not found')
-    except Exception as e:
-        print(e.value)
+   # except FileNotFoundError as e:
+   #     print(e.filename + ' was not found')
+    #except Exception as e:
+ #       print(e.value)
