@@ -1,5 +1,5 @@
 import sys
-from DES import DES
+from DES_433 import DES_433
 from RSA_433 import RSA_433
 
 
@@ -26,11 +26,12 @@ def cipher():
 
     inputSize = len(inputFileContent)
     cipher = None
+    outputContent = ""
 
     if(cipherName == 'DES'):
-        cipher = DES()
+        cipher = DES_433()
         if(len(inputFileContent)%8 != 0):
-            inputFileContent.ljust(inputSize+(8-inputSize%8),'0')
+            inputFileContent = inputFileContent.ljust(inputSize+(8-inputSize%8),'0')
     elif(cipherName == 'RSA'):
         cipher = RSA_433()
     else: # Unknown Cipher Method
