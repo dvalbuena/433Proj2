@@ -1,6 +1,6 @@
 import sys
 from DES import DES
-from RSA import RSA
+from RSA_433 import RSA_433
 
 
 
@@ -15,26 +15,24 @@ def cipher():
         raise InvalidArgument(0)
 
     cipherName = sys.argv[1]
-    # Key can span mulitple arguments
-    # Example: cipher RTS 4 3 1 2 ENC small.txt output.txt
-    # In the example the key would be 4 3 1 2
-    key = " ".join(sys.argv[2:len(sys.argv) - 3])
-    mode = sys.argv[len(sys.argv) - 3] # Thrid to last argument
-    inputFileName = sys.argv[len(sys.argv) - 2] # Second to last
-    outputFileName = sys.argv[len(sys.argv) - 1] # Last 
+    key = sys.argv[2]
+    mode = sys.argv[3]
+    inputFileName = sys.argv[4]
+    outputFileName = sys.argv[5]
     
     inputFile = open(inputFileName, "r")
     inputFileContent = inputFile.read()
     inputFile.close()
 
-    # inputFileContent = "meetmeafterthetogaparty"
-
+    inputSize = len(inputFileContent)
     cipher = None
 
     if(cipherName == 'DES'):
         cipher = DES()
+        if(len(inputFileContent)%8 != 0):
+            inputFileContent.ljust(inputSize+(8-inputSize%8),'0')
     elif(cipherName == 'RSA'):
-        cipher = RSA()
+        cipher = RSA_433()
     else: # Unknown Cipher Method
         raise InvalidArgument(1)
     
@@ -42,7 +40,11 @@ def cipher():
         if(mode == 'DEC'):
             outputContent = cipher.decrypt(inputFileContent)
         elif(mode == 'ENC'):
-            outputContent = cipher.encrypt(inputFileContent)
+            if(cipherName == 'DES'):
+                for i in range(0, inputSize, 8):
+                    outputContent = outputContent + cipher.encrypt(inputFileContent[i:i+8])
+            else:
+                outputContent = cipher.encrypt(inputFileContent)
         else:
             raise InvalidArgument(2)
 

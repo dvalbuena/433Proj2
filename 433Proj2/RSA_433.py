@@ -7,16 +7,10 @@ class RSA_433(Cipher):
     def setKey(self, key):
         try:
             self.key = key
-            if(key == 'privkey.pem'):
-	            keyFile = open(key,"r")
-	            privKey = keyFile.read()
-	            keyFile.close()
-            	return True
-            elif(key == 'pubkey.pem'):
-            	keyFile = open(key,"r")
-	            pubKey = keyFile.read()
-	            keyFile.close()
-            	return True
+            '''
+            key = open("key", "r").read()
+            '''
+            return True
         except ValueError:
             return False
 
