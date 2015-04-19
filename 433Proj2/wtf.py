@@ -5,7 +5,7 @@ from base64 import b64decode
 key = open("pubkey.pem", "r").read()
 rsakey = RSA.importKey(key)
 rsakey = PKCS1_OAEP.new(rsakey)
-encrypted = rsakey.encrypt("whatthefuck!!")
+encrypted = rsakey.encrypt("helloworld")
 package = encrypted.encode('base64')
 print encrypted.encode('base64')
 

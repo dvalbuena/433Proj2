@@ -6,4 +6,4 @@ File assig2skeleton.zip provides the skeleton codes. The skeleton codes comprise
 and most importantly, the DES class. The DES class, similar to the classical ciphers you imple-
 mented in Assignment 1, also implements CipherInterface interface. The job of DES class is
 to encrypt/decrypt data using the DES algorithm. The class contains 3 functions setKey(),
-encrypt(), and decrypt(). The functions perform the following tasks:00
+encrypt(), and decrypt(). The functions perform the following tasks:
